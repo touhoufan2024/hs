@@ -2,6 +2,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF) # 禁用 GNU 扩展，推荐使用标准 C++
 
+include_directories(
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/lua
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/sol2/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/ocgcore
+)
 
 set(TEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
 
@@ -20,6 +26,7 @@ else()
         target_link_libraries(${TEST_NAME} PRIVATE
             lua::lua
             sol2::sol2
+            ocgcore::ocgcore
         )
         # C++ 标准设置可以省略，因为它会继承全局的 CMAKE_CXX_STANDARD 17
         # 如果你想为测试文件强制不同于全局的标准 (不推荐，但可选):
