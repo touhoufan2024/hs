@@ -52,3 +52,24 @@ set(SOL2_LUA_VERSION "5.4.4" CACHE STRING "The version of Lua used")
 # we build Lua manually
 set(SOL2_BUILD_LUA FALSE CACHE BOOL "Always build Lua, do not search for it in the system")
 add_subdirectory(sol2)
+
+
+### ocgcore
+include_directories(
+    ocgcore
+    lua
+)
+file(GLOB OCGCORE_SOURCES
+  "ocgcore/*.c"
+  "ocgcore/*.cpp"
+)
+
+add_library(ocgcore STATIC ${OCGCORE_SOURCES})
+
+
+target_link_libraries(ocgcore
+    PRIVATE
+    lua
+)
+
+add_library(ocgcore::ocgcore ALIAS ocgcore)
