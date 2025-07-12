@@ -12,7 +12,7 @@ int main() {
 
 
 
-    // auto myduel = create_duel(100);
+    auto myduel = create_duel(100);
 
     cout << " hello " << endl;
     return 0;
