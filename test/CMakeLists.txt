@@ -6,7 +6,7 @@ include_directories(
     ${CMAKE_CURRENT_SOURCE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/lua
     ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/sol2/include
-    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/ocgcore
+    ${CMAKE_CURRENT_SOURCE_DIR}/../third_party/ygopro/ocgcore
 )
 
 set(TEST_DIR "${CMAKE_CURRENT_SOURCE_DIR}")
