@@ -56,12 +56,12 @@ add_subdirectory(sol2)
 
 ### ocgcore
 include_directories(
-    ocgcore
+    ygopro/ocgcore
     lua
 )
 file(GLOB OCGCORE_SOURCES
-  "ocgcore/*.c"
-  "ocgcore/*.cpp"
+  "ygopro/ocgcore/*.c"
+  "ygopro/ocgcore/*.cpp"
 )
 
 add_library(ocgcore STATIC ${OCGCORE_SOURCES})
