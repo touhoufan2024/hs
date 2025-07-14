@@ -7,3 +7,6 @@
 [submodule "third_party/ygopro"]
 	path = third_party/ygopro
 	url = https://github.com/touhoufan2024/ygopro.git
+[submodule "third_party/irrlicht"]
+	path = third_party/irrlicht
+	url = https://github.com/mercury233/irrlicht.git

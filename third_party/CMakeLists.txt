@@ -73,3 +73,16 @@ target_link_libraries(ocgcore
 )
 
 add_library(ocgcore::ocgcore ALIAS ocgcore)
+
+
+### irrlicht
+
+include_directories(
+    irrlicht/include
+)
+file(GLOB IRRLICHT_SOURCES
+  irrlicht/source/Irrlicht/*.cpp
+)
+
+add_library(irrlicht STATIC ${IRRLICHT_SOURCES})
+add_library(irrlicht::irrlicht ALIAS irrlicht)
