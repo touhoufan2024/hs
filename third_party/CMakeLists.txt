@@ -79,10 +79,54 @@ add_library(ocgcore::ocgcore ALIAS ocgcore)
 
 include_directories(
     irrlicht/include
+    irrlicht/source/Irrlicht
+    irrlicht/source/Irrlicht/zlib
+    irrlicht/source/Irrlicht/bzip2
+    irrlicht/source/Irrlicht/libpng
+    irrlicht/source/Irrlicht/jpeglib
 )
 file(GLOB IRRLICHT_SOURCES
   irrlicht/source/Irrlicht/*.cpp
+  irrlicht/source/Irrlicht/zlib/*.c
+  irrlicht/source/Irrlicht/bzip2/blocksort.c
+  irrlicht/source/Irrlicht/bzip2/bzlib.c
+  irrlicht/source/Irrlicht/bzip2/crctable.c
+  irrlicht/source/Irrlicht/bzip2/huffman.c
+  irrlicht/source/Irrlicht/bzip2/randtable.c
+  irrlicht/source/Irrlicht/bzip2/compress.c
+  irrlicht/source/Irrlicht/bzip2/decompress.c
+  irrlicht/source/Irrlicht/bzip2/bzcompress.c
+  irrlicht/source/Irrlicht/libpng/*.c
+  irrlicht/source/Irrlicht/jpeglib/*.c
 )
 
 add_library(irrlicht STATIC ${IRRLICHT_SOURCES})
 add_library(irrlicht::irrlicht ALIAS irrlicht)
+
+
+### ygopro
+
+include_directories(
+    ygopro/gframe
+    ygopro/gframe/lzma
+    ygopro/gframe/spmemvfs
+)
+
+file(GLOB YGO_SOURCES
+  "ygopro/gframe/*.cpp"
+  "ygopro/gframe/lzma/*.cpp"
+  "ygopro/gframe/spmemvfs/*.cpp"
+  "ygopro/gframe/*.c"
+  "ygopro/gframe/lzma/*.c"
+  "ygopro/gframe/spmemvfs/*.c"
+)
+
+
+find_package(Freetype REQUIRED)
+
+add_executable(ygopro
+  ${YGO_SOURCES}
+)
+
+target_include_directories(ygopro PRIVATE ${FREETYPE_INCLUDE_DIRS})
+target_link_libraries(ygopro PRIVATE ${FREETYPE_LIBRARIES} irrlicht ocgcore)
