@@ -271,3 +271,12 @@ target_link_libraries(ygopro
 ${FREETYPE_LIBRARIES} ${X11_LIBRARIES} ${SQLite3_LIBRARIES} ${OPENGL_LIBRARIES} 
 ${LIBEVENT_LIB} ${LIBEVENT_PTHREAD_LIB} OpenGL::GL
 irrlicht X11 Xxf86vm  ocgcore)
+
+# 定义源目录 (resources 文件夹)
+set(SOURCE_DIR "${CMAKE_SOURCE_DIR}/res")
+ 
+# 定义目标目录 (build/third 文件夹)
+set(TARGET_DIR "${CMAKE_BINARY_DIR}/third_party")
+ 
+# 把 resources 文件夹的内容递归复制到 build/third
+file(COPY ${SOURCE_DIR}/ DESTINATION ${TARGET_DIR})
