@@ -277,6 +277,21 @@ set(SOURCE_DIR "${CMAKE_SOURCE_DIR}/res")
  
 # 定义目标目录 (build/third 文件夹)
 set(TARGET_DIR "${CMAKE_BINARY_DIR}/third_party")
- 
+
+file(GLOB CONTENTS "${SOURCE_DIR}/*")
+
+
 # 把 resources 文件夹的内容递归复制到 build/third
-file(COPY ${SOURCE_DIR}/ DESTINATION ${TARGET_DIR})
+# file(CREATE_LINK  ${SOURCE_DIR}/ DESTINATION ${TARGET_DIR})
+foreach(item ${CONTENTS})
+    # 获取文件/目录的基础名称（文件名或文件夹名）
+    get_filename_component(name ${item} NAME)
+ 
+    # 在 target 目录下创建指向 source 的软链接
+    file(CREATE_LINK ${item} ${TARGET_DIR}/${name} SYMBOLIC)
+endforeach()
+
+
+set(SCRIPT_DIR "${CMAKE_SOURCE_DIR}/third_party/ygopro/script")
+get_filename_component(SCRIPT_NAME ${SCRIPT_DIR} NAME)
+file(CREATE_LINK ${SCRIPT_DIR} ${TARGET_DIR}/${SCRIPT_NAME} SYMBOLIC)
